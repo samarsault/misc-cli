@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+#
+# Calculate time required to read pdf
+#
+
+import os
+import sys
+
+wpm = 200 # words per minute
+
+if len(sys.argv) < 2:
+    print 'Please enter a valid filename'
+else:
+    file_name = sys.argv[1]
+    print os.system('ps2ascii %s -q | wc -w ' %(file_name))/wpm

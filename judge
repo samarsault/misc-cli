@@ -1,0 +1,88 @@
+#!/usr/bin/env sh
+
+#
+# Bare-bones Programming Contest Judge
+# judge <interpreter> <program> <testdata> (--log)
+#
+
+interp="$1"
+program="$2"
+test="$3"
+log="$4"
+
+# Overall verdict
+verdict="AC"
+
+if [[ "$log" == "--log" ]]; then
+	log=true
+else
+	log=false
+fi
+
+#
+# Run executable on input file
+# run_exec(input file)
+#
+function run_exec {
+	cat $1 | ./${program} > ${program}.tmp
+}
+
+#
+# Run interpreter on input file
+# run_interpreter(input file, interpreter program)
+#
+function run_interp {
+	cat $1 | ${interp} ${program} > ${program}.tmp
+}
+
+#
+# check(input, correct output)
+#
+function check {
+	# generate output in ${program}.tmp file
+	if [[ "$interp" == "exec" ]]; then
+		run_exec $1
+	else
+		run_interp $1
+	fi
+
+	output="${program}.tmp" # solution output
+	coutp="$2" # correct output
+
+	DIFF=$(diff ${output} ${coutp})
+	
+	if [[ "$DIFF" == "" ]]; then
+		if [[ "$log" = true ]]; then
+			echo "Verdict: AC"
+		fi
+	else
+		if [[ "$log" = true ]]; then
+			echo "Verdict: WA"
+		fi
+		verdict="WA"
+	fi
+
+	rm $output
+}
+
+function help {
+	printf "Usage:\n\t judge <interpreter> <program> <test data directory> (--log)\n"
+}
+
+# main
+if [[ "$test" != "" ]]; then
+	for file in $test/*.in; do
+		name=`basename $file`
+		filename="${name%.*}"
+		if [[ "$log" = true ]]; then
+			echo "Checking $file" "$test/$filename.out"
+		fi
+		check "$file" "$test/$filename.out"
+	done
+	echo "======================="
+	echo "Overall Verdict: $verdict" 
+	echo "======================="
+else
+	# check $inp $outp
+	help
+fi

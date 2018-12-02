@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+#
+# Simple Data Archiving Tool
+# archive <folder>
+#
+
+dir="$1"
+# Check Environment variable defined
+[ -z "$ARCH_DIR" ] && echo "Please setup ARCH_DIR env variable" && exit 1;
+
+if [[ "$dir" == "" ]]; then
+	echo "ArchiverX"
+	echo "Usage archive <dir>"
+	echo "Not enough arguments"
+else
+	echo "Archiving ${dir} to ${ARCH_DIR}/${dir}.tar.gz"
+	tar -czf "${ARCH_DIR}/${dir}.tar.gz" "${dir}"
+fi
