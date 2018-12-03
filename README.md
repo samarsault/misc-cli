@@ -6,41 +6,23 @@ Miscellanous command line tools to ease life.
 - Clone the Repo
 - Give executable permission to all scripts
 - Add the repo diretory to your `PATH`
+- Source(import) the functions in your bash rc file.
 
-## The Scripts
+i.e.
 
-### archive
 ```sh
-$ archive <path to folder/file>
+$ git clone https://github.com/thelehhman/misc-cli && cd misc-cli
+$ chmod +x *
+$ echo "export PATH=$(pwd)/scripts:$PATH" >> .bashrc # or .zshrc
+$ echo "source $(pwd)/functions/index.sh" >> .bashrc # or .zshrc
 ```
-**Description**: Centralizes all old data in a particular *archive* folder
 
-**ENV Vars required**: `$ARCH_DIR` should be set up.
+## Contributing
 
-**External programs required**: tar
-
-
-### judge
-```sh
-$ judge <interpreter> <program> <testdata directory> (--log)
-```
-**Description**: Programming Contest Judge. Interpreter can be exec (if executable) , else python,java etc.
-
-**ENV Vars required**:  None
-
-**External programs required**: cat, diff
-
-
-### pdftime
-```sh
-$ pdftime <book.pdf>
-```
-**Description**: Calculates time required to read a book at the average reading speed (200 WPM)
-
-**ENV Vars required**:  None
-
-**External programs required**: python,ps2ascii(ghostscript)
-
+It would be great if you could add scripts that help you. But while doing so, ensure the following:
+- Documentation is written in README.md in the format as given i.e. Description, ENV Vars required, External programs required
+- Header comment of the script should have the description of the script and syntax to use the script.
+- It would be under MIT License
 
 ## License
 MIT License
