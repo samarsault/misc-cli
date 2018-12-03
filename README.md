@@ -5,7 +5,7 @@ Miscellanous command line tools to ease life.
 
 - Clone the Repo
 - Give executable permission to all scripts
-- Add the repo diretory to your `PATH`
+- Add the repo scripts diretory to your `PATH`
 - Source(import) the functions in your bash rc file.
 
 i.e.
