@@ -13,8 +13,8 @@ i.e.
 ```sh
 $ git clone https://github.com/thelehhman/misc-cli && cd misc-cli
 $ chmod +x *
-$ echo "export PATH=$(pwd)/scripts:$PATH" >> .bashrc # or .zshrc
-$ echo "source $(pwd)/functions/index.sh" >> .bashrc # or .zshrc
+$ echo "export PATH=$(pwd)/scripts:$PATH" >> ~/.bashrc # or .zshrc
+$ echo "source $(pwd)/functions/index.sh" >> ~/.bashrc # or .zshrc
 ```
 
 ## Contributing
